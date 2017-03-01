@@ -17,4 +17,15 @@ for member in counts:
     print member, counts[member]
 
 #exercise3
+if {}: print "hi"
+d = {"maggie":"uk", "ronnie":"usa"}
+dir(d)
+print d.items()
+print d.keys()
+print d.values()
+print d.get("maggie", "ronnie")
+print d.get ("ringo", "nowhere")
+res = d.setdefault("mikhali", "ussr")
+print res, d["mikhali"]
+
 
