@@ -24,5 +24,28 @@ with open (outfile, 'a') as f: #appends to exsisting file
 
 ser.close()
 
+import numpy as py
 
-    
+INFILE = 'serial-temperature.tsv'
+outfile = 'sensor-data.nc'
+from tsv import reader
+
+times = []
+temps = []
+
+#function to convert from text file format to numbers
+def convert_time(tm):
+    tm = datetime.strptime(tm, "Y-%m-%dT%H::%M:%S.%f")
+    return tm
+
+def convert_temp(temp):
+    value = temp.strip("+").strip("C").lstrip("0")
+    return float(value) + 273.15
+
+
+with open(infile, 'rb') as tsvfile:
+    tsvreader = reader(tsvfile, delimiter = '\t')
+    for row in tsvreader:
+        time.append(convert_time(row[0]))
+        temps.append(convert_temp(row[1]))
+
